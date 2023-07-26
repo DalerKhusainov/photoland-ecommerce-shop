@@ -24,6 +24,7 @@ const CategoryNavMobile = ({ setCategoryNavMobile }) => {
         {data?.map((category) => {
           return (
             <Link
+              onClick={() => setCategoryNavMobile(false)}
               to={`products/${category.id}`}
               className="font-medium uppercase"
               key={category.id}

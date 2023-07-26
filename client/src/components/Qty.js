@@ -1,7 +1,41 @@
-import React from 'react';
+// REACT HOOKS
+import { useContext } from "react";
 
-const Qty = () => {
-  return <div>Qty</div>;
+// REACT CONTEXT API
+import { CartContext } from "../context/CartContext";
+
+const Qty = ({ item }) => {
+  const { handleAmountInput, handleAmountSelect } = useContext(CartContext);
+
+  return (
+    <div className="flex items-center gap-x-6 text-primary">
+      {item.amount < 10 ? (
+        <select
+          onChange={(e) => handleAmountSelect(e, item.id)}
+          value={item.amount}
+          className="p-2 rounded-lg w-[100px] h-12 outline-none text-primary"
+        >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10+</option>
+        </select>
+      ) : (
+        <input
+          onBlur={(e) => handleAmountInput(e, item.id)}
+          className="h-12 p-4 rounded-md text-primary placeholder:text-primary w-[120px] outline-accent"
+          type="text"
+          placeholder={item.amount}
+        />
+      )}
+    </div>
+  );
 };
 
 export default Qty;
